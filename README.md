@@ -60,4 +60,9 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-##Kevin
+
+## Origen del template
+## https://www.creative-tim.com/product/material-dashboard-laravel?partner=49926
+
+## Migracion desde una BD ya existente
+## https://github.com/kitloong/laravel-migrations-generator
