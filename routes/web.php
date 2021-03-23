@@ -63,4 +63,6 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::resource('producto', productoController::class);
+Route::resource('moneda','App\Http\Controllers\MonedaController');
+
 Auth::routes();
