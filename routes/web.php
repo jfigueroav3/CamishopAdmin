@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\productoController;
+use App\Http\Controllers\categoriaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,4 +64,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::resource('producto', productoController::class);
+Auth::routes();
+
+Route::resource('categoria', categoriaController::class);
 Auth::routes();
