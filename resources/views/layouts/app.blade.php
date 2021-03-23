@@ -27,7 +27,7 @@
         @guest()
             @include('layouts.page_templates.guest')
         @endguest
-        @if (auth()->check())
+        @if (false)
         <div class="fixed-plugin">
           <div class="dropdown show-dropdown">
             <a href="#" data-toggle="dropdown">
