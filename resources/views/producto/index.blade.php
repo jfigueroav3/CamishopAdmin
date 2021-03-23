@@ -24,6 +24,7 @@
                 <th>Nombre</th>
                 <th>Descripción</th>
                 <th>Precio Unitario</th>
+                <th>Imagenes</th>
                 <th>Estado</th>
                 <th>Acciones</th>
               </tr>
@@ -33,6 +34,11 @@
                 <td>{{ $value->Nombre }}</td>
                 <td>{{ $value->Descripcion }}</td>
                 <td>{{ $value->PrecioUnitario }}</td>
+                <td>
+                  <a title="Imagenes" style="cursor:pointer">
+                    <i class="material-icons">photo_library</i>
+                  </a>
+                </td>
                 @if ($value->Estado == 1)
                   <td><i class="material-icons text-success" style="cursor:pointer" title="Activo">check_circle</i></td>
                 @else
