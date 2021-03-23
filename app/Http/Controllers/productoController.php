@@ -14,7 +14,7 @@ class productoController extends Controller
      */
     public function index()
     {
-        $data = producto::latest()->paginate(5);
+        $data = producto::first()->paginate(5);
     
         return view('producto.index',compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -55,7 +55,7 @@ class productoController extends Controller
      */
     public function show(producto $producto)
     {
-        return view('producto.show',compact('producto'));
+        //
     }
 
     /**
