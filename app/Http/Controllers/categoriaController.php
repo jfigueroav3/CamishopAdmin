@@ -44,7 +44,7 @@ class categoriaController extends Controller
     
         categoria::create($request->all());
      
-        return redirect()->route('categoria.index')->with('success','PRODUCTO CREADO!');
+        return redirect()->route('categoria.index')->with('success','Categoría creada');
     }
 
     /**
@@ -55,17 +55,18 @@ class categoriaController extends Controller
      */
     public function show(Categoria $categoria)
     {
-        return view('categoria.show',compact('categoria'));
+        //return view('categoria.show',compact('categoria'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Categoria  $categoria
+     * @param  \App\Models\categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function edit(Categoria $categoria)
+    public function edit($IdCategoria)
     {
+        $categoria=categoria::findOrFail($IdCategoria);
         return view('categoria.edit',compact('categoria'));
     }
 
@@ -73,12 +74,22 @@ class categoriaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Categoria  $categoria
+     * @param  \App\Models\categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categoria $categoria)
+    public function update(Request $request, $IdCategoria)
     {
-        //
+        $request->validate([
+            
+            'Nombre' => 'required',
+            'Estado' => 'required',
+           
+        ]);
+    
+        $dcategoria=request()->except(['_token','_method']);
+        categoria::where('IdCategoria','=',$IdCategoria)->update($dcategoria);
+        return redirect()->route('categoria.index')
+                        ->with('success','Categoría actualizada');
     }
 
     /**
@@ -87,8 +98,15 @@ class categoriaController extends Controller
      * @param  \App\Models\Categoria  $categoria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Categoria $categoria)
+    public function destroy(Request $request,$IdCategoria)
     {
-        //
+
+
+        $dcategoria=request()->except(['_token','_method']);
+        categoria::where('IdCategoria','=',$IdCategoria)->delete($dcategoria);
+        return redirect()->route('categoria.index')
+                        ->with('success','Categoría eliminada');
+
+      
     }
 }
