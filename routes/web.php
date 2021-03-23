@@ -68,3 +68,4 @@ Auth::routes();
 
 Route::resource('categoria', categoriaController::class);
 Auth::routes();
+Route::resource('producto', productoController::class)->middleware('auth');
