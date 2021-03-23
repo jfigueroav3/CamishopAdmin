@@ -1,4 +1,4 @@
-@extends('producto.layout')
+@extends('layouts.app', ['activePage' => 'producto', 'titlePage' => __('producto')])
  
 @section('content')
     <div class="row" style="margin-top: 5rem;">
@@ -31,9 +31,8 @@
             <td>{{ $value->title }}</td>
             <td>{{ \Str::limit($value->description, 100) }}</td>
             <td>
-                <form action="{{ route('producto.destroy',$value->id) }}" method="POST">   
-                    <a class="btn btn-info" href="{{ route('producto.show',$value->id) }}">Show</a>    
-                    <a class="btn btn-primary" href="{{ route('producto.edit',$value->id) }}">Edit</a>   
+                <form action="{{ route('producto.destroy',$value->IdProducto) }}" method="POST">   
+                    <a class="btn btn-primary" href="{{ route('producto.edit',$value->IdProducto) }}">Edit</a>   
                     @csrf
                     @method('DELETE')      
                     <button type="submit" class="btn btn-danger">Delete</button>
