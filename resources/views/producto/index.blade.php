@@ -1,46 +1,59 @@
-@extends('producto.layout')
+@extends('layouts.app', ['activePage' => 'producto', 'titlePage' => __('producto')])
  
 @section('content')
-    <div class="row" style="margin-top: 5rem;">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Laravel 8 CRUD Example from scratch - laravelcode.com</h2>
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-tabs card-header-primary">
+            <div class="nav-tabs-navigation">
+              <div class="nav-tabs-wrapper">
+                <h4 class="card-title nav-tabs-title">Productos</h4>
+                <div class="pull-right">
+                  <a class="btn btn-success" href="{{ route('producto.create') }}">Nuevo</a>
+                </div>
+              </div>
             </div>
-            <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('producto.create') }}"> Create New Post</a>
-            </div>
-        </div>
-    </div>
-   
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
-    @endif
-   
-    <table class="table table-bordered">
-        <tr>
-            <th>No</th>
-            <th>Name</th>
-            <th>Details</th>
-            <th width="280px">Action</th>
-        </tr>
-        @foreach ($data as $key => $value)
-        <tr>
-            <td>{{ ++$i }}</td>
-            <td>{{ $value->title }}</td>
-            <td>{{ \Str::limit($value->description, 100) }}</td>
-            <td>
-                <form action="{{ route('producto.destroy',$value->id) }}" method="POST">   
-                    <a class="btn btn-info" href="{{ route('producto.show',$value->id) }}">Show</a>    
-                    <a class="btn btn-primary" href="{{ route('producto.edit',$value->id) }}">Edit</a>   
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+              <tr>
+                <th>No</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio Unitario</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+              @foreach ($data as $key => $value)
+              <tr>
+                <td>{{ ++$i }}</td>
+                <td>{{ $value->Nombre }}</td>
+                <td>{{ $value->Descripcion }}</td>
+                <td>{{ $value->PrecioUnitario }}</td>
+                @if ($value->Estado == 1)
+                  <td><i class="material-icons text-success" style="cursor:pointer" title="Activo">check_circle</i></td>
+                @else
+                <td><i class="material-icons text-danger" style="cursor:pointer" title="Inactivo">highlight_off</i></td>
+                @endif
+                <td>
+                  <form action="{{ route('producto.destroy',$value->IdProducto) }}" method="POST">   
+                    <a class="btn btn-primary" href="{{ route('producto.edit',$value->IdProducto) }}">Editar</a>   
                     @csrf
                     @method('DELETE')      
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
-            </td>
-        </tr>
-        @endforeach
-    </table>  
-    {!! $data->links() !!}      
+                    <button type="submit" class="btn btn-danger">Borrar</button>
+                  </form>
+                </td>
+              </tr>
+              @endforeach
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection

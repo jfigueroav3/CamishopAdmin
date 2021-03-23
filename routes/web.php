@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\productoController;
+use App\Http\Controllers\categoriaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,7 +63,11 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 });
 
-Route::resource('producto', productoController::class);
+
 Route::resource('moneda','App\Http\Controllers\MonedaController');
 
-Auth::routes();
+
+
+Route::resource('categoria', categoriaController::class)->middleware('auth');
+
+Route::resource('producto', productoController::class)->middleware('auth');
