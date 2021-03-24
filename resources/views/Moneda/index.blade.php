@@ -22,12 +22,14 @@
         <tr>
             <th>No</th>
             <th>Name</th>
+            <th>Status</th>
             <th width="280px">Action</th>
         </tr>
         @foreach ($monedas as $key => $value)
         <tr>
             <td>{{ ++$i }}</td>
             <td>{{ \Str::limit($value->Descripcion, 100) }}</td>
+            <td>{{ \Str::limit($value->Estado, 1) }}</td>
             <td>
                 <form action="{{ route('moneda.destroy',$value->IdMoneda) }}" method="POST">    
                     <a class="btn btn-primary" href="{{ route('moneda.edit',$value->IdMoneda) }}">Edit</a>   

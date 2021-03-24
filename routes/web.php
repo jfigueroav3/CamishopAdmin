@@ -69,4 +69,3 @@ Route::resource('moneda','App\Http\Controllers\MonedaController');
 Route::resource('categoria', categoriaController::class)->middleware('auth');
 
 Route::resource('producto', productoController::class)->middleware('auth');
-//prueba rama Maryory
