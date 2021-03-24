@@ -1,6 +1,7 @@
 @extends('producto.layout')
  
 @section('content')
+    {!!--Comentario!!}
     <div class="row" style="margin-top: 5rem;">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
