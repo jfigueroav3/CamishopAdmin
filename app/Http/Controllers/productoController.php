@@ -14,9 +14,9 @@ class productoController extends Controller
      */
     public function index()
     {
-        $data = producto::first()->paginate(5);
+        $data = producto::first()->paginate(10);
     
-        return view('producto.index',compact('data'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('producto.index',compact('data'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -26,7 +26,9 @@ class productoController extends Controller
      */
     public function create()
     {
-        return view('producto.create');
+        $data['games'] = ['AC', 'Zelda', 'Apex'];
+        $data['consolas'] = ['suish', 'xbox', 'ps4'];
+        return view('producto.create', $data);
     }
 
     /**
@@ -40,6 +42,9 @@ class productoController extends Controller
         $request->validate([
             'Nombre' => 'required',
             'Descripcion' => 'required',
+            'PrecioUnitario' => 'required',
+            'Genero' => 'required',
+            'Estado' => 'required'
         ]);
     
         producto::create($request->all());

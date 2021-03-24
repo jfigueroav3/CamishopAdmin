@@ -10,5 +10,5 @@ class producto extends Model
     use HasFactory;
     public $table = 'producto';
     protected $primaryKey = 'IdProducto';
-    protected $fillable = ['Nombre', 'Descripcion'];
+    protected $fillable = ['Nombre', 'Descripcion', 'PrecioUnitario', 'Genero', 'Estado'];
 }
