@@ -15,7 +15,7 @@ class productoController extends Controller
      */
     public function index()
     {
-        $data = producto::first()->paginate(10);
+        $data = producto::latest()->paginate(10);
     
         return view('producto.index',compact('data'))->with('i', (request()->input('page', 1) - 1) * 10);
     }
@@ -29,8 +29,8 @@ class productoController extends Controller
     {
         $data1['games'] = ['AC', 'Zelda', 'Apex'];
         $data1['consolas'] = ['suish', 'xbox', 'ps4'];
-        $data = categoria::where('Estado', '=', 1)->get();
-        return view('producto.create', $data1, compact('data'));
+        $categorias = categoria::where('Estado', '=', 1)->get();
+        return view('producto.create', $data1, compact('categorias'));
     }
 
     /**
@@ -46,7 +46,10 @@ class productoController extends Controller
             'Descripcion' => 'required',
             'PrecioUnitario' => 'required',
             'Genero' => 'required',
-            'Estado' => 'required'
+            'Estado' => 'required',
+            'IdCategoria' => 'required',
+            'IdMarcas' => 'required',
+            'IdEmpleado' => 'required'
         ]);
     
         producto::create($request->all());
@@ -88,6 +91,12 @@ class productoController extends Controller
         $request->validate([
             'Nombre' => 'required',
             'Descripcion' => 'required',
+            'PrecioUnitario' => 'required',
+            'Genero' => 'required',
+            'Estado' => 'required',
+            'IdCategoria' => 'required',
+            'IdMarcas' => 'required',
+            'IdEmpleado' => 'required'
         ]);
     
         $producto->update($request->all());

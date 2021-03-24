@@ -50,6 +50,33 @@
                 </div>
                 <div class="col-xs-2 col-sm-2 col-md-2">
                   <div class="form-group">
+                    <strong>Categoría:</strong>
+                    <select class="form-select form-select-sm" style="width: 130px" name="IdCategoria" required>
+                      @foreach ($categorias as $key => $value)
+                        <option value="{{ $value->IdCategoria }}">{{ $value->Nombre }}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2">
+                  <div class="form-group">
+                    <strong>Marca:</strong>
+                    <select class="form-select form-select-sm" style="width: 130px" name="IdMarcas" required>
+                      <option value="1" selected>marca1</option>
+                      <option value="2">Cosas prronas s.a.</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2">
+                  <div class="form-group">
+                    <strong>Empleado:</strong>
+                    <select class="form-select form-select-sm" style="width: 130px" name="IdEmpleado" required>
+                      <option value="1" selected>TEMPORAL</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2">
+                  <div class="form-group">
                     <strong>Estado:</strong>
                     <select class="form-select form-select-sm" style="width: 130px" name="Estado" required>
                       <option value="1" selected>Activo</option>
@@ -82,7 +109,7 @@
                 <th>id</th>
                 <th>categoria</th>
               </tr>
-              @foreach ($data as $key => $value)
+              @foreach ($categorias as $key => $value)
                 <tr>
                   <td></td>
                   <td>{{ $value->IdCategoria }}</td>
