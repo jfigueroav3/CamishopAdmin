@@ -62,6 +62,7 @@
                 </div>
               </div>
             </form>
+            <!-- datos de un array -->
             <table>
               <tr>
                 <th>juegos</th>
@@ -73,6 +74,21 @@
                     <td><?= $consolas[$i]?></td>
                 </tr>
               <?php endfor ?>
+            </table>
+            <!-- datos de una tabla -->
+            <table>
+              <tr>
+                <th>no</th>
+                <th>id</th>
+                <th>categoria</th>
+              </tr>
+              @foreach ($data as $key => $value)
+                <tr>
+                  <td></td>
+                  <td>{{ $value->IdCategoria }}</td>
+                  <td>{{ $value->Nombre }}</td>
+                </tr>
+              @endforeach
             </table>
           </div>
         </div>

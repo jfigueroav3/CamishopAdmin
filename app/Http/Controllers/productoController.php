@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\producto;
+use App\Models\categoria;
 use Illuminate\Http\Request;
 
 class productoController extends Controller
@@ -26,9 +27,10 @@ class productoController extends Controller
      */
     public function create()
     {
-        $data['games'] = ['AC', 'Zelda', 'Apex'];
-        $data['consolas'] = ['suish', 'xbox', 'ps4'];
-        return view('producto.create', $data);
+        $data1['games'] = ['AC', 'Zelda', 'Apex'];
+        $data1['consolas'] = ['suish', 'xbox', 'ps4'];
+        $data = categoria::where('Estado', '=', 1)->get();
+        return view('producto.create', $data1, compact('data'));
     }
 
     /**
