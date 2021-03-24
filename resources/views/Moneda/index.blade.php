@@ -2,6 +2,7 @@
  
 @section('content')
     {!!--Comentario!!}
+    {!!--Comentario2!!}
     <div class="row" style="margin-top: 5rem;">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
