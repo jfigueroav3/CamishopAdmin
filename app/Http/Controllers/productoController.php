@@ -76,7 +76,10 @@ class productoController extends Controller
      */
     public function edit(producto $producto)
     {
-        return view('producto.edit',compact('producto'));
+        $data1['games'] = ['AC', 'Zelda', 'Apex'];
+        $data1['consolas'] = ['suish', 'xbox', 'ps4'];
+        $categorias = categoria::where('Estado', '=', 1)->get();
+        return view('producto.edit', $data1, compact('producto', 'categorias'));
     }
 
     /**
