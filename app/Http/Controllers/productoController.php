@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\producto;
 use App\Models\categoria;
 use Illuminate\Http\Request;
+use DB;
 
 class productoController extends Controller
 {
@@ -16,8 +17,10 @@ class productoController extends Controller
     public function index()
     {
         $data = producto::latest()->paginate(10);
-    
-        return view('producto.index',compact('data'))->with('i', (request()->input('page', 1) - 1) * 10);
+        $data1 = DB::select('CALL spr_sel_index_productos(1)');
+        return view('producto.index', compact('data'))
+                                    ->with('i', (request()->input('page', 1) - 1) * 10)
+                                    ->with('miprod', $data1);
     }
 
     /**
