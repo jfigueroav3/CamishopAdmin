@@ -58,6 +58,50 @@
               <div id="seccionPaginacion">
                 {{ $data->render("pagination::bootstrap-4") }}
               </div>
+              <!-- datos de un array -->
+              <table class="table">
+                <tr>
+                  <th>No</th>
+                  <th>Nombre</th>
+                  <th>Descripción</th>
+                  <th>Precio Unitario</th>
+                  <th>Categoría</th>
+                  <th>Imagenes</th>
+                  <th>Estado</th>
+                  <th>Acciones</th>
+                </tr>
+                <tbody>
+                @foreach ($miprod as $prod)
+                <tr>
+                  <td>1</td>
+                  <td>{{ $prod->Nombre }}</td>
+                  <td>{{ $prod->Descripcion }}</td>
+                  <td>{{ $prod->PrecioUnitario }}</td>
+                  <td>{{ $prod->NombreCat }}</td>
+                  <td>
+                    <a title="Imagenes" style="cursor:pointer">
+                      <i class="material-icons">photo_library</i>
+                    </a>
+                  </td>
+                  <td>
+                    @if ($prod->Estado == 1)
+                      <i class="material-icons text-success" style="cursor:pointer" title="Activo">check_circle</i>
+                    @else
+                      <i class="material-icons text-danger" style="cursor:pointer" title="Inactivo">highlight_off</i>
+                    @endif
+                  </td>
+                  <td>
+                    <form action="{{ route('producto.destroy',$prod->IdProducto) }}" method="POST">   
+                      <a class="btn btn-primary" href="{{ route('producto.edit',$prod->IdProducto) }}">Editar</a>   
+                      @csrf
+                      @method('DELETE')      
+                      <button type="submit" class="btn btn-danger">Borrar</button>
+                    </form>
+                  </td>
+                </tr>
+                @endforeach
+                </tbody>
+              </table>
             </div>
           </div>    
         </div>

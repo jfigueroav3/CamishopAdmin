@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\producto;
 use App\Models\categoria;
 use Illuminate\Http\Request;
+use DB;
 
 class productoController extends Controller
 {
@@ -16,8 +17,10 @@ class productoController extends Controller
     public function index()
     {
         $data = producto::latest()->paginate(10);
-    
-        return view('producto.index',compact('data'))->with('i', (request()->input('page', 1) - 1) * 10);
+        $data1 = DB::select('CALL spr_sel_index_productos(1)');
+        return view('producto.index', compact('data'))
+                                    ->with('i', (request()->input('page', 1) - 1) * 10)
+                                    ->with('miprod', $data1);
     }
 
     /**
@@ -76,7 +79,10 @@ class productoController extends Controller
      */
     public function edit(producto $producto)
     {
-        return view('producto.edit',compact('producto'));
+        $data1['games'] = ['AC', 'Zelda', 'Apex'];
+        $data1['consolas'] = ['suish', 'xbox', 'ps4'];
+        $categorias = categoria::where('Estado', '=', 1)->get();
+        return view('producto.edit', $data1, compact('producto', 'categorias'));
     }
 
     /**
